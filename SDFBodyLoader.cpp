@@ -17,7 +17,6 @@
 #include <cnoid/SceneGraph>
 #include <cnoid/SceneShape>
 #include <cnoid/SceneDrawables>
-#include <cnoid/DaeParser>
 #include <cnoid/MeshGenerator>
 #include <cnoid/NullOut>
 #include <cnoid/ImageIO>
@@ -587,7 +586,7 @@ bool SDFBodyLoaderImpl::load(Body* body, const std::string& filename)
                 link->setName((*c)->childName);
                 link->setJointType(Link::FIXED_JOINT);
                 link->setJointAxis(Vector3::Zero());
-                link->Tb() = rootpose * (*c)->pose;
+                link->setOffsetPosition(rootpose * (*c)->pose);
                 root.reset(new JointInfo());
                 root->jointName = (*c)->jointName;
                 root->childName = (*c)->parentName;
