@@ -747,7 +747,7 @@ void SDFSensorConverter::createRayDevice(const std::string key, const std::strin
             rsensor->setYawRange(angle);
         }
 
-        rsensor->setYawResolution(hrz->Get<int>("resolution"));
+        rsensor->setYawStep(hrz->Get<int>("resolution"));
 
         // setting pitch
         if (vrt) {
@@ -757,7 +757,7 @@ void SDFSensorConverter::createRayDevice(const std::string key, const std::strin
             }
 
             if (vrt->HasElement("resolution") == true) {
-                rsensor->setPitchResolution(vrt->Get<int>("resolution"));
+                rsensor->setPitchStep(vrt->Get<int>("resolution"));
             }
         }
 
