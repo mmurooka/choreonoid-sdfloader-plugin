@@ -168,6 +168,9 @@ add_cnoid_plugin(${target} SHARED ${sources} ${headers})
 
 target_link_libraries(${target} CnoidBase CnoidBody ${SDFORMAT_LIBRARIES} ${ASSIMP_LIBRARIES})
 
+configure_file(${PROJECT_SOURCE_DIR}/env-hooks/99.choreonoid_additional_plugin.bash.in ${PROJECT_SOURCE_DIR}/env-hooks/99.choreonoid_sdfloader_plugin.bash @ONLY)
+catkin_add_env_hooks(99.choreonoid_sdfloader_plugin SHELLS bash DIRECTORY ${PROJECT_SOURCE_DIR}/env-hooks)
+
 install(TARGETS 
   ${target}
   RUNTIME DESTINATION ${CNOID_PLUGIN_SUBDIR}
