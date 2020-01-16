@@ -664,6 +664,11 @@ void SDFBodyLoaderImpl::convertChildren(Link* plink, JointInfoPtr parent)
         link->setMass((*it)->child->m);
         link->setCenterOfMass(link->Rs()*Vector3((*it)->child->c.pos.x, (*it)->child->c.pos.y, (*it)->child->c.pos.z));
         link->setInertia(link->Rs()*(*it)->child->I*link->Rs().transpose());
+#ifdef MODELING_ROTOR_INERTIA
+        double gear_ratio = 400;
+        double rotor_inertia = 7.0e-6;
+        link->setEquivalentRotorInertia(gear_ratio * gear_ratio * rotor_inertia);
+#endif
 
         setShape(link, (*it)->child->visualShape, true);
         setShape(link, (*it)->child->collisionShape, false);

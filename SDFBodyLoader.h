@@ -9,6 +9,11 @@
 #include <cnoid/AbstractBodyLoader>
 #include "exportdecl.h"
 
+#define MODELING_ROTOR_INERTIA // comment out here for not modeling rotor inertia
+#ifdef MODELING_ROTOR_INERTIA
+#warning "rotor inertia is modeled in sdf."
+#endif
+
 namespace cnoid {
 
 class SDFBodyLoaderImpl;
